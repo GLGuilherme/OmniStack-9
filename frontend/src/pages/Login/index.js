@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import api from '../../services/api';
 
 export default function Login({history}) {
-    localStorage.removeItem('user')
     const [email, setEmail] = useState('');
 
     async function handleSubmit(event) {
         event.preventDefault();
-
+        console.log('1');
         const response = await api.post('/sessions', {
             email
         })
 
-        const { _id } = response.data;
+        const { _id } = await response.data;
+        
         localStorage.setItem('user', _id);
 
         history.push('/dashboard')
