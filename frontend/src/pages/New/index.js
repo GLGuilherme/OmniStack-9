@@ -19,14 +19,16 @@ export default function New({history}) {
         const data = new FormData();
         const user_id = localStorage.getItem('user');
 
-        data.append('thumbnail', thumbnail);
         data.append('company', company);
+        data.append('thumbnail', thumbnail);
         data.append('techs', techs);
         data.append('price', price);
-
+        
         await api.post('/spots', data, {
             headers: {user_id}
         })
+
+        console.log(data);
 
         history.push('/dashboard');
     }
